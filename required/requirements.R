@@ -1,0 +1,7 @@
+install.packages("data.table",repos= "http://lib.stat.cmu.edu/R/CRAN/")
+install.packages("Rtsne",repos= "http://lib.stat.cmu.edu/R/CRAN/")
+install.packages("optparse",repos= "http://lib.stat.cmu.edu/R/CRAN/")
+install.packages("ape",repos= "http://lib.stat.cmu.edu/R/CRAN/")
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install("ggtree", version = "3.8")

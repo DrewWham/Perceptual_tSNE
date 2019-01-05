@@ -1,0 +1,11 @@
+#list of packaged for python
+
+matplotlib
+torch
+scikit-image
+opencv-python
+pandas
+numpy
+ipython
+scikit-learn
+torchvision
