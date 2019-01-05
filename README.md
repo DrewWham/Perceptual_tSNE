@@ -9,16 +9,19 @@ Code to make perceptual embedding plots
 
 ## Quick Start
 
- open a terminal and `git clone` this repo
- then change your working directory to the repo with: `cd Perceptual_tSNE`  
- install the required python 3 packages with: `pip install -r ./required/requirements.txt`  
- install the required R packages with: `Rscript ./required/requirements.R`  
+ -open a terminal and `git clone` this repo  
 
- run `python Perceptual_tSNE.py -h` to view help and test that all dependencies are installed correctly.
+ -then change your working directory to the repo with: `cd Perceptual_tSNE`  
+
+ -install the required python 3 packages with: `pip install -r ./required/requirements.txt`  
+
+ -install the required R packages with: `Rscript ./required/requirements.R`  
+
+ -run `python Perceptual_tSNE.py -h` to view help and test that all dependencies are installed correctly.
 
 ## Usage
 
- run `python Perceptual_tSNE.py` from the directory it is located. The first time this script is run the script will trigger a download of the machine learning model itself. This may take several minutes but will only occur on the first use. Subsequent runs will complete in a significantly shorter period of time.
+ run `python Perceptual_tSNE.py` from the directory it is located. 
 
 The following options are required:  
 `-i` specifies the name & location of the input image directory  
