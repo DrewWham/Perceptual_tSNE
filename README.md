@@ -21,7 +21,7 @@ Code to make perceptual embedding plots
 
 ## Usage
 
- run `python Perceptual_tSNE.py` from the directory it is located. 
+ run `python Perceptual_tSNE.py` from the directory it is located.
 
 The following options are required:  
 `-i` specifies the name & location of the input image directory  
@@ -37,10 +37,10 @@ To produce the example output files run:
 
 
 
-Please credit:
-Our methods paper for the use of this repo and the application of this technique for quantifying perceptual distance in biological systems:
+Please credit:  
+Our methods paper for the use of this repo and the application of this technique for quantifying perceptual distance in biological systems:  
 
-Our application paper for the use of this technique in quantifying bumblebee mimicry:
+Our application paper for the use of this technique in quantifying bumblebee mimicry:  
 
 Zhang et al. (2018)'s paper for the base machine learning technique for quantifying perceptual distance of images:
 https://github.com/richzhang/PerceptualSimilarity https://richzhang.github.io/PerceptualSimilarity/ Zhang et al. 2018 for perceptual similarity code.
