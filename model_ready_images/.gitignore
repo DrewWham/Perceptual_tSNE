@@ -1,0 +1,11 @@
+# ignore all files in this dir...
+*
+# ... except for these
+!.gitignore
+!.gitkeep
+!females_1
+!males_1
+!females_1/*
+!males_1/*
+
+
