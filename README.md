@@ -26,14 +26,15 @@ Code to make perceptual embedding plots
 The following options are required:  
 `-i` specifies the name & location of the input image directory  
 `-n` specifies the base name to use for program outputs
+`-p` specifies the perplexity parameter to be used in t-SNE analysis
+`-g` allows the use of a GPU, pass `-use_gpu TRUE` if you have a CUDA enabled GPU available on the system with gpu relevent dependencies installed.
 
 The following options are available:  
-`-s` specifies the random seed to use for the random number generator.  
-`-use_gpu` allows the use of a GPU, the script defaults to CPU. Pass `-use_gpu TRUE` if you have a GPU available on the system.  
+`-s` specifies the random seed to use for the random number generator.    
 
 To produce the example output files run:  
 
-`python Perceptual_tSNE.py -i "./input_images/females" -n females_1 -s 1`
+`python Perceptual_tSNE.py -i "./input_images/females" -n females_1 -s 1 -p 30 -g FALSE`
 
 
 
