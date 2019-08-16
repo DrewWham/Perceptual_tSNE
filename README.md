@@ -39,9 +39,9 @@ To produce the example output files run:
 
 
 Please credit:  
-Our methods paper for the use of this repo and the application of this technique for quantifying perceptual distance in biological systems:  
+Our methods paper for the use of this repo and the application of this technique for quantifying perceptual distance in biological systems:Measuring Perceptual Distance of Organismal Color Pattern using the Features of Deep Neural Networks. (2019) Drew C Wham, Briana D Ezray, Heather M Hines. https://doi.org/10.1101/736306
 
-Our application paper for the use of this technique in quantifying bumblebee mimicry:  
+Our application paper for the use of this technique in quantifying bumblebee mimicry: Müllerian mimicry in bumble bees is a transient continuum. (2019) Briana D. Ezray, Drew C. Wham, Carrie Hill, Heather M. Hines https://doi.org/10.1101/513275
 
 Zhang et al. (2018)'s paper for the base machine learning technique for quantifying perceptual distance of images:
 https://github.com/richzhang/PerceptualSimilarity https://richzhang.github.io/PerceptualSimilarity/ Zhang et al. 2018 for perceptual similarity code.
