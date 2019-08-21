@@ -2,12 +2,25 @@
 
 Code to make perceptual embedding plots
 
+## With Docker
+### Installation
+1. Install `docker` and `docker-compose` on the host machine.
+2. Run the follow commands:
+```
+git clone https://github.com/tsankuanglee/Perceptual_tSNE
+cd Perceptual_tSNE
+./run
+```
+This will take a while while it installs all R packages and Python packages. The subsequent runs will take shorter.
+3. Edit `command.sh` as needed (see Usage below)
 
-## Dependencies
+## Without Docker
+
+### Dependencies
 * Python 3.5 or later
 * R 3.5 or later
 
-## Quick Start
+### Quick Start
 
  -open a terminal and `git clone` this repo  
 

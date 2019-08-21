@@ -1,0 +1,28 @@
+version: "3.7"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+          CONTAINER_PROJECT_FOLDER: /app
+
+    environment: # env for running
+        HOST_USER_ID: ${HOST_USER_ID}
+        HOST_USER_GROUP_ID: ${HOST_USER_GROUP_ID}
+        CONTAINER_USER_NAME: ${CONTAINER_USER_NAME}
+        CONTAINER_USER_GROUP_NAME: ${CONTAINER_USER_GROUP_NAME}
+
+    #entrypoint: /usr/bin/bash
+    #stdin_open: true
+    #tty: true
+    #
+
+    command: /bin/sh -c 'cd  /app; ./command.sh'
+            
+
+    volumes:
+      - type: bind
+        source: "${HOST_PROJECT_FOLDER}"
+        target: /app
