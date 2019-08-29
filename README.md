@@ -19,7 +19,7 @@ This will take a while while it installs all R packages and Python packages. The
 
 ### Dependencies
 * Python 3.5 or later
-* R 3.5 or later
+* R 3.5 
 
 ### Quick Start
 
