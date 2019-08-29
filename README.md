@@ -2,7 +2,7 @@
 
 Code to make perceptual embedding plots
 
-## With Docker
+## With Docker- implemented by Tsan-Kuang Lee
 ### Installation
 1. Install `docker` and `docker-compose` on the host machine.
 2. `git clone https://github.com/DrewWham/Perceptual_tSNE.git`
