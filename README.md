@@ -11,7 +11,7 @@ Code to make perceptual embedding plots
 2. Edit `command.sh` as needed (see Usage below)
 3. 
 ```
-./run
+./run.sh
 ```
 This will take a while while it installs all R packages and Python packages. The subsequent runs will take shorter.
 
