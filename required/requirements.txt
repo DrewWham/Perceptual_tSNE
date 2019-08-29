@@ -6,6 +6,5 @@ scikit-image
 opencv-python
 pandas
 numpy
-ipython
 scikit-learn
 torchvision
