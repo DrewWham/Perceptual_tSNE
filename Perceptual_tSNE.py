@@ -28,13 +28,13 @@ def getArgs(argv):
     input = ''
     project_name = ''
     try:
-        opts, args = getopt.getopt(argv,"hi:n:s:",["input=","name=","seed="])
+        opts, args = getopt.getopt(argv,"hi:n:s:p:g:",["input=","name=","seed=","perplexity=","use_gpu="])
     except getopt.GetoptError:
-        print('usage: perceptual_tsne.py -i <input>  -n <name>  -s <seed>')
+        print('usage: perceptual_tsne.py -i <input>  -n <name>  -s <seed> -p <perplexity> -use_gpu <use_gpu>')
         sys.exit(2)
     for opt, arg in opts:
         if opt == '-h':
-            print( 'usage: perceptual_tsne.py -i <input>  -n <name> -s <seed>')
+            print( 'usage: perceptual_tsne.py -i <input>  -n <name> -s <seed> -p <perplexity> -g <gpu>')
             sys.exit()
         elif opt in ("-i", "--input"):
             input = arg
@@ -42,9 +42,13 @@ def getArgs(argv):
             name = arg
         elif opt in ("-s", "--seed"):
             seed = arg
+        elif opt in ("-p", "--perplexity"):
+            perplexity = arg
+        elif opt in ("-g", "--use_gpu"):
+            use_gpu = arg
     #now we return the variables to be passed forward
 
-    return (input,name,seed)
+    return (input,name,seed,perplexity,use_gpu)
 
 #input="./input_images/males"
 #name="males"
@@ -59,8 +63,9 @@ def makeModelReadyImages(input,name):
         os.makedirs(output_dir)
     for image in imgs:
          img_path="%s/%s" % (input, image)
+         print(img_path)
          img=skimage.io.imread(img_path)
-         img64=transform.resize(img,(64,64))
+         img64=transform.resize(img,(96,96))
          output_path="%s/%s" % (output_dir,image)
          skimage.io.imsave(output_path, img64)
 
@@ -69,8 +74,8 @@ def makePairsList(input,name):
     rcall= "Rscript ./scripts/make_pairs_list.r -i %s -n %s" % (input,name)
     subprocess.call(rcall, shell=True)
 
-def makeEmb(name,seed):
-    rcall= "Rscript ./scripts/tSNE_perceptual_dist.r -n %s -s %s" % (name,seed)
+def makeEmb(name,perplexity,seed):
+    rcall= "Rscript ./scripts/tSNE_perceptual_dist.r -n %s -p %s -s %s" % (name,perplexity,seed)
     subprocess.call(rcall, shell=True)
 
 
@@ -108,30 +113,30 @@ def visualize_scatter_with_images(name,data, figsize=(45,45), image_zoom=4):
 
 def main():
     argv = sys.argv[1:]
-    (input,name,seed) = getArgs(argv)
+    (input,name,seed,perplexity,gpu) = getArgs(argv)
     makeModelReadyImages(input,name)
     makePairsList(input,name)
 
     data=pd.read_csv("./datatables/%s_pairs_list.csv" % name)
 
-    use_gpu = True         # Whether to use GPU
+    use_gpu = gpu         # Whether to use GPU
     spatial = False         # Return a spatial map of perceptual distance.
                        # Optional args spatial_shape and spatial_order control output shape and resampling filter: see DistModel.initialize() for details.
 ## Initializing the model
     model = dm.DistModel()
 # Linearly calibrated models
-#model.initialize(model='net-lin',net='squeeze',use_gpu=use_gpu,spatial=spatial)
+    #model.initialize(model='net-lin',net='squeeze',use_gpu=use_gpu,spatial=spatial)
     model.initialize(model='net-lin',net='alex',use_gpu=use_gpu,spatial=spatial)
-#model.initialize(model='net-lin',net='vgg',use_gpu=use_gpu,spatial=spatial)
+    #model.initialize(model='net-lin',net='vgg',use_gpu=use_gpu,spatial=spatial)
 
 # Off-the-shelf uncalibrated networks
 #model.initialize(model='net',net='squeeze',use_gpu=use_gpu)
-#model.initialize(model='net',net='alex',use_gpu=use_gpu)
-#model.initialize(model='net',net='vgg',use_gpu=use_gpu)
+    #model.initialize(model='net',net='alex',use_gpu=use_gpu)
+    #model.initialize(model='net',net='vgg',use_gpu=use_gpu)
 
 # Low-level metrics
-# model.initialize(model='l2',colorspace='Lab')
-# model.initialize(model='ssim',colorspace='RGB')
+    #model.initialize(model='l2',colorspace='Lab')
+    #model.initialize(model='ssim',colorspace='RGB')
     print('Model [%s] initialized'%model.name())
 ## Example usage with images
     dist=[]
@@ -149,7 +154,7 @@ def main():
 
     data.distance=dist
     data.to_csv("./datatables/output_%s_data.csv" % name)
-    makeEmb(name,seed)
+    makeEmb(name,perplexity,seed)
     emb_path="./datatables/%s_emb.csv" % name
     data=pd.read_csv(emb_path)
     visualize_scatter_with_images(name=name,data=data)
