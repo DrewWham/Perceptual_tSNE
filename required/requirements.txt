@@ -8,3 +8,5 @@ pandas
 numpy
 scikit-learn
 torchvision
+ipython
+pillow==6.1

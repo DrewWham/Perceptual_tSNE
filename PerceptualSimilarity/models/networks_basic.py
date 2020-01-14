@@ -16,7 +16,7 @@ class PNet(nn.Module):
         super(PNet, self).__init__()
 
         self.use_gpu = use_gpu
-
+        
         self.pnet_type = pnet_type
         self.pnet_rand = pnet_rand
 
@@ -67,7 +67,7 @@ class PNet(nn.Module):
 class PNetLin(nn.Module):
     def __init__(self, pnet_type='vgg', pnet_tune=False, use_dropout=False, use_gpu=True, spatial=True):
         super(PNetLin, self).__init__()
-
+        
         self.use_gpu = use_gpu
         self.pnet_type = pnet_type
         self.pnet_tune = pnet_tune
@@ -101,8 +101,9 @@ class PNetLin(nn.Module):
 
         self.shift = torch.autograd.Variable(torch.Tensor([-.030, -.088, -.188]).view(1,3,1,1))
         self.scale = torch.autograd.Variable(torch.Tensor([.458, .448, .450]).view(1,3,1,1))
-
+        
         if(use_gpu):
+            print(use_gpu)
             if(self.pnet_tune):
                 self.net.cuda()
             else:

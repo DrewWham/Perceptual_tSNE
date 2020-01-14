@@ -18,7 +18,13 @@ services:
     #stdin_open: true
     #tty: true
     #
-
+    
+    # for debug; the following command will keep the container running
+    # then one can use `docker-compose exec app bash` to enter the container
+    # (ctrl-d to leave the bash shell)
+    #command: tail -f /dev/null
+    
+    # this command is for actual running
     command: /bin/sh -c 'cd  /app; ./command.sh'
             
 

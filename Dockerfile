@@ -16,6 +16,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         gosu \
     && rm -rf /var/lib/apt/lists/*
 
+# R package dependencies
+RUN apt-get update && apt-get install -y \
+    libcurl4 libcurl4-openssl-dev libmagick++-dev \
+    && rm -rf /var/lib/apt/lists/*
+
 # Set the locale
 RUN locale-gen en_US.UTF-8  
 ENV LANG en_US.UTF-8  

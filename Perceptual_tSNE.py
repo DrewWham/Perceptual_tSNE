@@ -118,7 +118,12 @@ def main():
     makePairsList(input,name)
 
     data=pd.read_csv("./datatables/%s_pairs_list.csv" % name)
-
+    
+    if gpu.lower() in ('yes', 'true', 't', 'y', '1'):
+        gpu=True
+    elif gpu.lower() in ('no', 'false', 'f', 'n', '0'):
+        gpu=False
+    
     use_gpu = gpu         # Whether to use GPU
     spatial = False         # Return a spatial map of perceptual distance.
                        # Optional args spatial_shape and spatial_order control output shape and resampling filter: see DistModel.initialize() for details.

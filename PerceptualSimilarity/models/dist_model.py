@@ -17,7 +17,7 @@ class DistModel(BaseModel):
     def name(self):
         return self.model_name
 
-    def initialize(self, model='net-lin', net='squeeze', colorspace='Lab', use_gpu=True, printNet=False, spatial=False, spatial_shape=None, spatial_order=1, spatial_factor=None):
+    def initialize(self,use_gpu, model='net-lin', net='squeeze', colorspace='Lab', printNet=False, spatial=False, spatial_shape=None, spatial_order=1, spatial_factor=None):
         '''
         INPUTS
             model - ['net-lin'] for linearly calibrated network
@@ -45,8 +45,10 @@ class DistModel(BaseModel):
 
         self.model_name = '%s [%s]'%(model,net)
         if(self.model == 'net-lin'): # pretrained net + linear layer
+        
             self.net = networks.PNetLin(use_gpu=use_gpu,pnet_type=net,use_dropout=True,spatial=spatial)
             kw = {}
+            print(use_gpu)
             if not use_gpu:
                 kw['map_location'] = 'cpu'
             self.net.load_state_dict(torch.load('./weights/%s.pth'%net, **kw))
